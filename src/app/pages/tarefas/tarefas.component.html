@@ -1,0 +1,49 @@
+<mat-card>
+    <div class="tarefa-box">
+        <button routerLink="/cadastro" mat-raised-button color="primary">Cadastrar nova tarefa</button>
+        <div class="search-box">
+            <mat-form-field>
+                <mat-label>Procurar</mat-label>
+                <input matInput type="text" placeholder="Qual registro está buscando?" (input)="search($event)">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="tarefas" class="mat-elevation-z8">
+        <ng-container matColumnDef="isCompleted">
+          <th mat-header-cell *matHeaderCellDef>Concluído</th>
+          <td mat-cell *matCellDef="let tarefa">
+            <div *ngIf="tarefa.isCompleted == true; else incompleta">
+                <mat-icon style="color: green;">task_alt</mat-icon>
+            </div>
+            <ng-template #incompleta>
+                <mat-icon style="color: rgba(255, 0, 0, 0.7);">radio_button_unchecked</mat-icon>
+            </ng-template>
+          </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Título da Tarefa </th>
+          <td mat-cell *matCellDef="let tarefa"> {{tarefa.title}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Acoes">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let tarefa">
+                <button *ngIf="tarefa.isCompleted == false;" mat-raised-button style="background-color: green; color: white; margin-right: 10px;" (click)="concluirTarefa(tarefa.id)">Concluir</button>
+                <button *ngIf="tarefa.isCompleted == false;" style="margin-right: 10px;" routerLink="/editar/{{ tarefa.id }}" mat-raised-button color="accent">Editar</button>
+                <button routerLink="/detalhes/{{ tarefa.id }}" mat-raised-button>Detalhes</button>
+            </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Excluir">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let tarefa">
+                <button mat-raised-button color="warn" (click)="excluirTarefa(tarefa.id)">Excluir</button>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+    </table>  
+</mat-card>

@@ -1,0 +1,41 @@
+<mat-card>
+    <h1>{{ btnTitulo }}</h1>
+
+    <form [formGroup]="tarefaForm" (ngSubmit)="submit()" #formDit="ngForm">
+
+        <input type="hidden" formControlName="id">
+
+
+        <div class="input-box">
+            <mat-form-field>
+                <mat-label for="">Título:</mat-label>
+                <input matInput type="text" formControlName="title" placeholder="Insira o título!" required>
+            </mat-form-field>
+        </div>
+
+        <div class="input-box">
+            <mat-form-field>
+                <mat-label for="">Descrição:</mat-label>
+                <textarea matInput type="text" formControlName="description" placeholder="Insira a descrição (opcional)"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="input-box">
+            <mat-form-field appearance="fill">
+                <mat-label>Data de vencimento:</mat-label>
+                <input matInput [matDatepicker]="dueDatePicker" [min]="minDate" formControlName="dueDate" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #dueDatePicker></mat-datepicker>
+            </mat-form-field>
+              
+        </div>
+        
+
+
+        <div class="btn-box">
+            <button type="submit" [disabled]="!tarefaForm.valid" mat-raised-button color="primary" style="margin-right: 10px;">{{ btnAcao }}</button>
+            <button routerLink="/tarefas" mat-raised-button>Voltar</button>
+        </div>
+    </form>
+</mat-card>

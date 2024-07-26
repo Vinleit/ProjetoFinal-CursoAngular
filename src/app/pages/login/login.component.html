@@ -1,0 +1,26 @@
+<mat-card>
+    <div>
+        <h1>LOGIN</h1>
+    </div>
+    <div id="login-box">
+        <div>
+            <mat-form-field>
+                <mat-label>Usuário</mat-label>
+                <input matInput type="text" [(ngModel)]="username" (keydown.enter)="btnLogin()">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" [(ngModel)]="password" (keydown.enter)="btnLogin()">
+            </mat-form-field>
+        </div>
+
+        <span>
+            {{mensagemLogin}}
+        </span>
+
+        <button id="btnLogin" mat-raised-button color="primary" (click)="btnLogin()">Entrar</button>
+    </div>
+</mat-card>

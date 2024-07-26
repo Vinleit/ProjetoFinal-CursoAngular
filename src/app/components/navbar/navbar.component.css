@@ -1,0 +1,8 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+#labelUser, button{
+    margin-right: 10px;
+    font-size: 18px;
+}

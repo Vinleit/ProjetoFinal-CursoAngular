@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="ToogleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Lista de tarefas</span>
+    <span class="example-spacer"></span>
+    <label id="labelUser">{{usuarioLogado}}</label>
+    <label *ngIf="isAuth">||<button mat-button (click)="logOut()">Sair<mat-icon>logout</mat-icon></button></label>
+</mat-toolbar>
